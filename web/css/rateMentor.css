@@ -1,0 +1,160 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 1, 2021, 7:37:50 AM
+    Author     : Tri
+*/
+p{
+    margin: 0
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mentor-info-section{
+    margin-top: 20px;
+    width: 80%;
+}
+
+.mentor-info{
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 1px;
+}
+
+.mentor-avatar{
+    padding: 20px
+}
+
+.mentor-info-text{
+    padding: 20px;
+}
+
+.mentor-info-text p{
+    margin: 0px;
+    margin-bottom: 0px;
+}
+
+.rating-section{
+    margin-top: 20px;
+    width: 80%;
+}
+
+.your-rating{
+    padding: 20px;
+    margin: 20px 0px 20px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 1px;
+}
+
+.rating-button-group{
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    margin-top: 10px
+}
+
+.checked {
+    color: orange;
+}
+
+.other-ratings-list{
+    list-style-type: none;
+    padding: 0
+}
+
+.other-ratings-list li{
+    padding: 10px;
+}
+
+.other-ratings-list li:hover{
+    background-color: gainsboro
+}
+
+.rater-name{
+    margin: 0
+}
+
+.name-and-stars{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+.stars{
+    display: flex;
+    align-items: center;
+}
+
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+}
+
+.rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.rating label:last-child {
+    position: static;
+}
+
+.rating label:nth-child(1) {
+    z-index: 5;
+}
+
+.rating label:nth-child(2) {
+    z-index: 4;
+}
+
+.rating label:nth-child(3) {
+    z-index: 3;
+}
+
+.rating label:nth-child(4) {
+    z-index: 2;
+}
+
+.rating label:nth-child(5) {
+    z-index: 1;
+}
+
+.rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.rating label .icon {
+    float: left;
+    color: transparent;
+}
+
+.rating label:last-child .icon {
+    color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+    color: orange;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px orange;
+}

@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 29, 2021, 8:30:00 PM
+    Author     : Nguyen Van Long
+*/
+body{
+    background-image: url(https://img.thuthuattinhoc.vn/uploads/2019/01/13/anh-nen-dep-nhat_105620947.jpeg);
+}
+.container{
+
+    height: 150px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 30px;
+    border: 2px dashed;
+    background-color: #fbe9e9;
+    transform: translate(-50%, -90%);
+    border-color: #df5353;
+
+
+}
