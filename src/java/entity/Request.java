@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Nguyen Van Long
@@ -14,9 +16,38 @@ public class Request {
     int mentee_id;
     int mentor_id;
     String mess;
-    String date;
+    String title;
+    Date deadline;
+    Date creationDate;
+    Date finishDate;
     int status;
+    float deadlineHour;
 
+    public Request(int mentee_id, String mess, String title, Date deadline, Date creationDate, int status, float deadlineHour) {
+        this.mentee_id = mentee_id;
+        this.mess = mess;
+        this.title = title;
+        this.deadline = deadline;
+        this.creationDate = creationDate;
+        this.status = status;
+        this.deadlineHour = deadlineHour;
+    }
+
+    public Request(int id, int mentee_id, int mentor_id, String mess, String title, Date deadline, Date creationDate, Date finishDate, int status, float deadlineHour) {
+        this.id = id;
+        this.mentee_id = mentee_id;
+        this.mentor_id = mentor_id;
+        this.mess = mess;
+        this.title = title;
+        this.deadline = deadline;
+        this.creationDate = creationDate;
+        this.finishDate = finishDate;
+        this.status = status;
+        this.deadlineHour = deadlineHour;
+    }
+
+
+    
     public int getId() {
         return id;
     }
@@ -49,12 +80,36 @@ public class Request {
         this.mess = mess;
     }
 
-    public String getDate() {
-        return date;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getFinishDate() {
+        return finishDate;
+    }
+
+    public void setFinishDate(Date finishDate) {
+        this.finishDate = finishDate;
     }
 
     public int getStatus() {
@@ -64,5 +119,14 @@ public class Request {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public float getDeadlineHour() {
+        return deadlineHour;
+    }
+
+    public void setDeadlineHour(float deadlineHour) {
+        this.deadlineHour = deadlineHour;
+    }
+    
     
 }

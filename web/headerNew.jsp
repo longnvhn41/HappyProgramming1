@@ -46,6 +46,7 @@
 
                                     <c:when test="${sessionScope.user.role==1}">
                                         <!--Mentee-->
+                                       <a class="dropdown-item" href="RequestController?service=createRequest&id=${sessionScope.user.id}">Create a request</a>
                                         <a class="dropdown-item" href="UserController?service=becomeMentor&id=${sessionScope.user.id}">Register as a Mentor</a>
                                          <a class="dropdown-item" href="UserController?service=mentorByList">Mentor List Suggestion</a>
                                     </c:when>

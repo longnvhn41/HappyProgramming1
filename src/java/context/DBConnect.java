@@ -40,7 +40,7 @@ public class DBConnect {
     }
 
     public DBConnect() throws SQLException {
-        this("jdbc:sqlserver://localhost:1433;databaseName=HappyDemo1", "sa", "123456");
+        this("jdbc:sqlserver://localhost:1433;databaseName=HappyProgramming1", "sa", "1234567");
 
     }
 
