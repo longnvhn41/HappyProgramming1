@@ -157,12 +157,24 @@ public class RequestController extends HttpServlet {
                     }
                     request.getRequestDispatcher("homepage.jsp").forward(request, response);
                 }
-            }if(service.equals("statisticRequestAfter")){
+            }if(service.equals("statisticRequest")){
                 HttpSession session = request.getSession();
                 User user = (User) session.getAttribute("user");
                 int menteeId = user.getId();
-                
+                double hours = 0;
+                int totalMentor = dao.getMentorNumberById(menteeId);
                 List<Request> lists = dao.getListRequestById(menteeId);
+                int totalRequest = lists.size();
+                for (Request request1 : lists) {
+                    if(request1.getStatus() == 0){
+                        hours += request1.getDeadlineHour();
+                    }
+                }
+                request.setAttribute("total", totalRequest);
+                request.setAttribute("totalMentor", totalMentor);
+                request.setAttribute("totalHour", hours);
+                request.getRequestDispatcher("menteeStatisticList.jsp").forward(request, response); 
+            }if(service.equals("statisticRequest")){
                 
             }
             

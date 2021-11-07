@@ -189,10 +189,74 @@ public class RequestDao {
         }
     }
     
-    /*public static void main(String[] args) throws SQLException {
+    //lay list request theo status
+    public List<Request> getListRequestByStatus(int status){
+        List<Request> ls = new ArrayList<Request>();
+        String query = "SELECT * From Request where status = (?)";
+        try {
+            conn = new DBConnect().con;
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, status);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                 ls.add(new Request(rs.getInt("id"), rs.getInt("mentee_id"), 
+                        rs.getInt("mentor_id"), rs.getString("message"),rs.getString("title"), 
+                        rs.getDate("deadline_date"), rs.getDate("creation_date"), rs.getDate("finish_date"), 
+                        rs.getInt("status"), rs.getFloat("hours")));
+            }
+            try {
+                rs.close();
+            } catch (Exception e) {
+            }
+            try {
+                ps.close();
+            } catch (Exception e) {
+            }
+            try {
+                con.close();
+            } catch (Exception e) {
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return ls;
+    }
+    
+    public int getMentorNumberById(int id){
+        String query = "SELECT COUNT(distinct mentor_id) FROM request WHERE mentee_id = (?)";
+        try {
+            conn = new DBConnect().con;
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+            try {
+                rs.close();
+            } catch (Exception e) {
+            }
+            try {
+                ps.close();
+            } catch (Exception e) {
+            }
+            try {
+                con.close();
+            } catch (Exception e) {
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
+    }
+    
+    public static void main(String[] args) throws SQLException {
         DBConnect dconn = new DBConnect();
-        RequestDao r =new RequestDao(dconn);
-        List<Request> r1 = r.getListRequestById(1);
-        System.out.println(r1.get(1).getMess());
-    }*/
+        RequestDao r1 =new RequestDao(dconn);
+        //List<Request> r1 = r.getListRequestByStatus(1);
+        List<Request> r12 = r1.getListRequestById(1);
+        int count = r1.getMentorNumberById(1);
+        System.out.println(count);
+        System.out.println(r12.size());
+    }
 }
