@@ -27,8 +27,8 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="css/login_util.css">
         <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="css/login_util.css">
         <!--===============================================================================================-->
     </head>
     <body>
@@ -47,7 +47,7 @@
             }
         %>
         <div class="limiter">
-            <div class="container-login100">
+            <div class="container-login100" style="background: url('./images/background.jpg') center / cover no-repeat;">
                 <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
                     <form action="login" method="POST" class="login100-form validate-form" >
                         <span class="login100-form-title p-b-55">
@@ -73,14 +73,14 @@
                         </div>
 
                         <div class="contact100-form-checkbox m-l-4">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox100" for="ckb1">
+                            <input class="input-checkbox100" style="border: 2px solid #333;" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100"  for="ckb1">
                                 Remember me
                             </label>
                         </div>
 
                         <div class="container-login100-form-btn p-t-25">
-                            <button type="submit" class="login100-form-btn">
+                            <button type="submit" class="login100-form-btn" style="background-color: #333;">
                                 Login
                             </button>
                         </div>

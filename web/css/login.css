@@ -368,7 +368,7 @@ iframe {
   height: 18px;
   border-radius: 3px;
   background: #fff;
-  border: 2px solid #d33f8d;
+  border: 2px solid #333;
   left: 0;
   top: 48%;
   -webkit-transform: translateY(-50%);
@@ -379,7 +379,7 @@ iframe {
 }
 
 .input-checkbox100:checked + .label-checkbox100::before {
-  color: #d33f8d;
+  color: #333;
 }
 
 
@@ -406,7 +406,6 @@ iframe {
   width: 100%;
   height: 62px;
   border-radius: 3px;
-  background: #d33f8d;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -423,7 +422,7 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  background: #333333;
+  background-color: #fff;
 }
 
 /*------------------------------------------------------------------

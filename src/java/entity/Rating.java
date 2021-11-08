@@ -10,12 +10,13 @@ package entity;
  * @author Tri
  */
 public class Rating {
+
     int id;
     int menteeId;
     int mentorId;
     int stars;
     String comment;
-    
+
     //extra
     String menteeName;
 
@@ -30,6 +31,10 @@ public class Rating {
         this.comment = comment;
     }
 
+    public Rating(String comment) {
+        this.comment = comment;
+    }
+
     public String getMenteeName() {
         return menteeName;
     }
@@ -37,7 +42,7 @@ public class Rating {
     public void setMenteeName(String menteeName) {
         this.menteeName = menteeName;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -78,6 +83,4 @@ public class Rating {
         this.comment = comment;
     }
 
-
-    
 }

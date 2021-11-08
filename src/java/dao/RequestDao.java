@@ -188,6 +188,33 @@ public class RequestDao {
             System.out.println(e);
         }
     }
+    public int getMentorNumberById(int id){
+        String query = "SELECT COUNT(distinct mentor_id) FROM request WHERE mentee_id = (?)";
+        try {
+            conn = new DBConnect().con;
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+            try {
+                rs.close();
+            } catch (Exception e) {
+            }
+            try {
+                ps.close();
+            } catch (Exception e) {
+            }
+            try {
+                con.close();
+            } catch (Exception e) {
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
+    }
     
     /*public static void main(String[] args) throws SQLException {
         DBConnect dconn = new DBConnect();

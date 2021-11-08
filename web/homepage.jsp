@@ -97,35 +97,38 @@
                         <li><a href="signup.jsp">Signup</a></li>
                         <li><a href="#">Contact</a></li>                        
                         </c:if>
-                        
+
                     <c:if test="${sessionScope.user!=null}">
                         <li><a href="#" style="padding-right:0">Hello: ${sessionScope.user.account}                              
                             </a></li>
-                            <li><a href="#">Contact</a></li>
+                        <li><a href="#">Contact</a></li>
 <!--                        <li><a href="UserController?service=userProfile&user=${sessionScope.user.account}"
-                               style="padding: 0 8px"><img src="${sessionScope.user.ava}" alt="Avatar" class="avatar"></a></li>-->
+                           style="padding: 0 8px"><img src="${sessionScope.user.ava}" alt="Avatar" class="avatar"></a></li>-->
+                        
                         <!-- Phân quyền cho mentee = 1-->
                         <c:if test="${sessionScope.user.role==1}">
-                            <li><a href="UserController?service=mentorByList">Mentee Dashboard</a></li>
+                            <li><a href="RequestController?service=statisticRequestAfter">Mentee Dashboard</a></li>
 <!--                            <li><a href="UserController?service=becomeMentor&id=${sessionScope.user.id}">Become Mentor</a></li>-->
                             <li><a href="UserController?service=logout">Logout</a>
                             </c:if>
-                        <!-- Phân quyền cho mentor = 0-->
-                        <c:if test="${sessionScope.user.role==0}">
+                            
+                                <!-- Phân quyền cho mentor = 0-->
+                            <c:if test="${sessionScope.user.role==0}">
                             <li><a href="#">Request of student</a></li>
                             <li><a href="#">Request</a></li>
                             <li><a href="UserController?service=logout">Logout</a>
                             </c:if>
-                        <!-- Phân quyền cho admin = 2--> 
-                        <c:if test="${sessionScope.user.role==2}">
-<!--                            <li><a href="#">Manager User</a></li>
-                            <li><a href="#">Request</a></li>-->
-<!--                            <li><a href="#">Contact</a></li>-->
+                            
+                                <!-- Phân quyền cho admin = 2--> 
+                            <c:if test="${sessionScope.user.role==2}">
+                                <!--                            <li><a href="#">Manager User</a></li>
+                                                            <li><a href="#">Request</a></li>-->
+                                <!--                            <li><a href="#">Contact</a></li>-->
                             <li><a href="template.jsp">Admin Dasboard</a></li>
-<!--                            <li><a href="SkillController?action=adminSkillList">Skill list</a></li>-->
-                            </c:if>
+                            <!--                            <li><a href="SkillController?action=adminSkillList">Skill list</a></li>-->
+                        </c:if>
 
-<!--                        <li><a href="UserController?service=logout">Logout</a></li>-->
+                        <!--                        <li><a href="UserController?service=logout">Logout</a></li>-->
 
                     </c:if>
 
@@ -139,7 +142,7 @@
                         Online learning offers teachers an efficient way to deliver lessons to students. Online learning has a number of tools such as videos, PDFs, podcasts, and teachers can use all these tools as part of their lesson plans. By extending the lesson plan beyond traditional textbooks to include online resources, teachers are able to become more efficient educators.
 
                     </div>
-                    
+
                 </div>
 
             </div>

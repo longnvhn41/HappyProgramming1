@@ -7,10 +7,13 @@ package dao;
 
 import context.DBConnect;
 import entity.Invitation;
+import entity.Rating;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -43,7 +46,7 @@ public class InvitationDao {
         }
         return num;
     }
-
+    
     public int getUserByEmail(String email) {
         int n = 0;
         String sql = "select id from [user] where email=?";
@@ -73,7 +76,85 @@ public class InvitationDao {
         }
         return 0;
     }
+    public int menteeInSystem() {
+        String query = "SELECT COUNT(id) FROM [user]where role=1";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    public int countComment(int id) {
+        String query = "select COUNT(mentee_id) from rating where mentor_id=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    public int rateting(int id) {
+        int count=0;
+        List<String> list= new ArrayList<>();
+        String query = "select comment from rating where mentor_id=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if(rs.getString(1)!=(null)){
+                     list.add(rs.getString(1));
+                     count=list.size();
+                }
+               
+                
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+    public int mentorInSystem() {
+        String query = "SELECT COUNT(id) FROM [user]where role=0";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    public int skillsInSystem() {
+        String query = "SELECT COUNT(id) FROM skill";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
     public void createInvitation(Invitation invitation) throws Exception {
         String query = "insert into invitation values (?,?,?)";
 
@@ -86,6 +167,27 @@ public class InvitationDao {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+    public Invitation getInvitationByMentorRequest(int mentorID, int requestID) {
+
+       
+        String query = "select * from invitation where mentor_id=? and request_id=?";
+
+        try {
+            
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, mentorID);
+            ps.setInt(2, requestID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return new Invitation(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4));
+            }
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
 }

@@ -214,28 +214,28 @@ public class UserController extends HttpServlet {
                 request.getRequestDispatcher("UserController?service=displayMentee_mentor").forward(request, response);
 
             }
-            if(service.equals("mentorByList")){
-                String sql = "select u.id, u.full_name, u.email, u.phone,cv.description from [user] as u join cv on u.id=cv.[user_id] join cv_skill as"
-                        + " cvs on cv.id=cvs.cv_id join skill as s on cvs.skill_id=s.id \n" +
-                            "join request_skill as rs on s.id=rs.skill_id where u.role=0 and cvs.skill_id=rs.skill_id";
+            if (service.equals("mentorByList")) {
+                InvitationDao invi = new InvitationDao(dBConnect);
+                int requestID = invi.maxRequestID();
+                String sql = "select u.id, u.full_name, u.email, u.phone,cv.description from [user] as u join cv on u.id=cv.[user_id] join cv_skill as cvs on cv.id=cvs.cv_id join skill as s on cvs.skill_id=s.id\n"
+                        + "join request_skill as rs on s.id=rs.skill_id join request on request.id=rs.request_id where u.role=0 and cvs.skill_id=rs.skill_id and request.id=" + requestID + "";
                 ResultSet rs = dBConnect.getData(sql);
-//                RatingDAO dao=new RatingDAO(dBConnect);
-//                
-//                dao.getAverageRating(0);
                 request.setAttribute("ketQua", rs);
+                request.setAttribute("ID", requestID);
                 request.getRequestDispatcher("mentorBySkill.jsp").forward(request, response);
-            }
-            if (service.equals("addInvitation")){
-                InvitationDao dao=new InvitationDao(dBConnect);
-                String status="Processing";
-                int mentorID=Integer.parseInt(request.getParameter("mentorID"));
-                Invitation invitation=new Invitation(0, mentorID, status);
+            }           
+            if (service.equals("addInvitation")) {
+                int requestId = Integer.parseInt(request.getParameter("requestID"));
+                int mentorID = Integer.parseInt(request.getParameter("mentorID"));
+                InvitationDao dao = new InvitationDao(dBConnect);
+                String status = "Processing";
+                Invitation invitation = new Invitation(requestId, mentorID, status);
                 try {
                     dao.createInvitation(invitation);
                 } catch (Exception ex) {
                     Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-;
+                response.sendRedirect("UserController?service=mentorByList");
             }
         }
     }

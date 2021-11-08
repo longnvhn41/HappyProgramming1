@@ -39,7 +39,7 @@
             String alert = (String) request.getAttribute("alert");
             String alert1 = (String) request.getAttribute("alert1");
         %>
-        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins" style="background: url('./images/background.jpg') center / cover no-repeat;">
             <div class="wrapper wrapper--w680">
                 <div class="card card-4">
                     <div class="card-body">
